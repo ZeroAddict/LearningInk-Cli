@@ -1,10 +1,13 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import styles from '../public/styles/global.css'
+import styles from '../public/styles/styles.css'
 
 function GalleryPage() {
   return (
     <div>
+      {/* <Head>
+        <link rel="stylesheet" href="/styles/styles.css" />
+      </Head> */}
       <Header />
       <main>
         <h1>Gallery</h1>

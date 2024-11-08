@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
+import styles from '../../public/styles/styles.css';
+import Header from '../components/Header'
+// import Head from 'next/head';
 
 function HomeSignup() {
+{/* <Head>
+  <link rel="stylesheet" href="/styles/styles.css" />
+</Head> */}
   const [showSignup, setShowSignup] = useState(false);
   const [signupType, setSignupType] = useState('');
   const [formData, setFormData] = useState({
@@ -34,13 +39,14 @@ function HomeSignup() {
   };
 
   return (
+    <> <Header/>
     <div className={styles.container}>
       <div className={styles.leftPage}>
         {showSignup ? (
           <div>
             {signupType === '' && (
               <>
-                <h2>Sign up as:</h2>
+                {/* <h2>Sign up as:</h2> */}
                 <button
                   className={styles.signupButton}
                   onClick={() => handleSignupType('student')}
@@ -130,6 +136,7 @@ function HomeSignup() {
         {/* Right page content */}
       </div>
     </div>
+    </>
   );
 }
 

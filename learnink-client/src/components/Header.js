@@ -6,27 +6,27 @@ function Header() {
       <ul>
         <li>
           <Link href="/">
-            <a>Home</a>
+            Home
           </Link>
         </li>
         <li>
           <Link href="/about">
-            <a>About</a>
+            About
           </Link>
         </li>
         <li>
           <Link href="/gallery">
-            <a>Gallery</a>
+            Gallery
           </Link>
         </li>
         <li>
           <Link href="/partners">
-            <a>Partners</a>
+            Partners
           </Link>
         </li>
         <li>
           <Link href="/contact">
-            <a>Contact</a>
+            Contact
           </Link>
         </li>
       </ul>

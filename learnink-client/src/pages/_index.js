@@ -164,7 +164,7 @@ function HomeSignup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Submit form data to API or backend
-    const endpointUrl = '/api/signup';
+    const endpointUrl = '/organization/signup';
     const requestOptions = {
       method: 'POST',
       headers: {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import styles from '../../public/styles/styles.css';
-import Header from '../components/Header'
+import styles from '../../public/styles/styles.module.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import axios from 'axios';
 // import Head from 'next/head';
 
 function HomeSignup() {
@@ -9,6 +11,7 @@ function HomeSignup() {
 </Head> */}
   const [showSignup, setShowSignup] = useState(false);
   const [signupType, setSignupType] = useState('');
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,6 +63,7 @@ function HomeSignup() {
     password: {
       required: true,
       minLength: 8,
+      pattern: /^a-zA-Z0-9\W{8,}$/
     },
     confirmPassword: {
       required: true,
@@ -165,6 +169,10 @@ function HomeSignup() {
     e.preventDefault();
     // Submit form data to API or backend
     const endpointUrl = '/organization/signup';
+    const endpointUrl2 = '/student/signup';
+    axios.post(endpointUrl2, formData)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.error(error));
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -196,7 +204,7 @@ function HomeSignup() {
 
   return (
     <> <Header/>
-    <div className={styles.container}>
+    <div className={styles}>
       <div className={styles.leftPage}>
         {showSignup ? (
           <div>
@@ -218,7 +226,7 @@ function HomeSignup() {
               </>
             )}
             {signupType === 'student' && (
-              <form onSubmit={handleSubmit}>
+              <form className={styles.form} onSubmit={handleSubmit}>
                 <h2>Student Sign-up</h2>
                 <label>Name:</label>
                 <input
@@ -252,10 +260,10 @@ function HomeSignup() {
               </form>
             )}
             {signupType === 'organisation' && (
-              <form onSubmit={handleSubmit}>
+              <form className={styles.form} onSubmit={handleSubmit}>
                 <h2>Organisation Sign-up</h2>
                 <label>Organisation Name:</label>
-                <input
+                <input className
                   type="text"
                   name="orgName"
                   value={formData.orgName}
@@ -272,12 +280,7 @@ function HomeSignup() {
                   <option value="university">University</option>
                   <option value="company">Company</option>
                 </select>
-                <label>Organisation Description:</label>
-                <textarea
-                  name="orgDescription"
-                  value={formData.orgDescription}
-                  onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+
                 <label>Organisation Description:</label>
                 <textarea
                   name="orgDescription"
@@ -363,6 +366,20 @@ function HomeSignup() {
                   value={formData.orgDescription}
                   onChange={handleChange}
                 />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                 <label>Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                <label>Confirm Password:</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                />{errors.name && <div style={{ color: 'red' }}>Password does not match</div>}
                 <button type="submit">Sign up</button>
               </form>
             )}
@@ -376,6 +393,9 @@ function HomeSignup() {
       <div className={styles.rightPage}>
         {/* Right page content */}
       </div>
+    </div>
+    <div className={styles.Footer}>
+      <Footer/>
     </div>
     </>
   );

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-function Header() {
+export default function Header() {
   return (
     <nav>
       <ul>
@@ -34,4 +34,4 @@ function Header() {
   );
 }
 
-export default Header;
+// export default Header;

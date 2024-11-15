@@ -1,11 +1,12 @@
 import Image from "next/image";
 // import styles from "../../public/global.css";
 import Link from "next/link";
+import styles from '../../public/styles/styles.module.css';
 
 export default function Home() {
   return (
     <div>
-       <nav>
+       <nav className={styles.nav}>
       <ul>
         <li>
           <Link href="/_index">
@@ -13,7 +14,7 @@ export default function Home() {
           </Link>
         </li>
         <li>
-          <Link href="/about">
+          <Link href="/_about">
             About
           </Link>
         </li>

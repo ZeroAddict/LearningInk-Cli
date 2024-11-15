@@ -1,16 +1,27 @@
 import Link from 'next/link';
+import styles from '../../public/styles/styles.module.css'
+import Image from "next/image";
 
 export default function Header() {
   return (
-    <nav>
+
+
+    <nav className={styles.nav}>
+    <div className='navHdr'>
+      <Link href="/">
+        <Image src="/assets/images/learningInk01.png" alt="learningInk" width={100} height={33} />
+      </Link>
+      
+    </div>
+      {/* <nav> */}
       <ul>
         <li>
-          <Link href="/">
+          <Link href="/_index">
             Home
           </Link>
         </li>
         <li>
-          <Link href="/about">
+          <Link href="/_about">
             About
           </Link>
         </li>
@@ -31,6 +42,8 @@ export default function Header() {
         </li>
       </ul>
     </nav>
+   
+
   );
 }
 

@@ -30,6 +30,18 @@ body {
   color: #fff;
   padding: 1rem;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav ul{
+  display: flex;
+  align-items: flex-start;
+}
+
+.nav ul li{
+  list-style: none;
 }
 
 .nav a {
@@ -49,56 +61,95 @@ body {
   display: flex;
   height: 100vh;
 }
-
+.container form{
+  /* height: ; */
+}
 .leftPage {
   width: 50%;
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.leftPage .form{
+  min-width: 100%;
 }
 
 .getStartedButton {
+  background-color: orange;;
   padding: 1rem 2rem;
   font-size: 1.5rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  margin: 50px;
+
+  &.getStartedButton:hover{
+    background-color: rgba(226, 91, 19, 0.9);
+    color: white;
+    transition: width ease-in-out;
+    /* ease-in-out; */
+  }
 }
 
-.signupButton {
+.signupButton1, .signupButton2 {
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  border: none;
+  border: 2px transparent;
   border-radius: 0.5rem;
   cursor: pointer;
   margin: 1rem;
+  color: #fff;
+  background-color: rgba(2, 2, 255, 0.8);
+}
+.signupButton1{
+  margin-right: 2rem;
+  background-color: rgb(255, 81, 0);
 }
 
+@media (max-width: 1167px) {
+  .signupButton1, .signupButton2 {
+    width: 80%;
+    font-size: 0.9em;
+    margin: 0.2rem;
+    transition: transform ease-out;
+  }
+}
 .rightPage {
   width: 50%;
   background-color: #ffffff;
 }
 
 .form{
+  background-color: #333333cf; opacity: 0.9;
   display: flex;
+  width: 100%;
+  border-radius: 5px;
   flex-direction: column;
   align-items: flex-start;
+  border: 1px solid #555;
+  padding: 20px 10px;
+  margin: 10px;
+  max-width: 100%;
 }
 
-.form label, .form textarea, .form select {
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+.orgForm{
+  background-color: darkmagenta;
 }
 
-/* .form .input:after, .form .textarea:after, .form .select:after {
-  content: "\A";
-  white-space: pre;
-} */
+.form input{
+  width: auto;
+}
 
+.form input[type="radio"], .form label[for=""]{
+  margin-bottom: 0;
+  color: red;
+  
+}
 .footer {
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.7);
   color: #fff;
   padding: 1rem;
   text-align: center;
@@ -108,4 +159,9 @@ body {
 .contactus{
   background-color: aquamarine;
   width: 50%;
+  margin-bottom: 40px;
+}
+
+.contactBtn{
+  margin-bottom: 40px;
 }

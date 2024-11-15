@@ -52,13 +52,21 @@ function HomeSignup() {
   };
 
   const validationRules = {
-    name: {
+    firstName: {
+      required: true,
+      minLength: 3,
+    },
+    lastName: {
       required: true,
       minLength: 3,
     },
     email: {
       required: true,
       pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    },
+    username: {
+      required: true,
+      minLength: 3,
     },
     password: {
       required: true,
@@ -212,13 +220,13 @@ function HomeSignup() {
               <>
                 {/* <h2>Sign up as:</h2> */}
                 <button
-                  className={styles.signupButton}
+                  className={styles.signupButton1}
                   onClick={() => handleSignupType('student')}
                 >
                   Sign up as Student
                 </button>
                 <button
-                  className={styles.signupButton}
+                  className={styles.signupButton2}
                   onClick={() => handleSignupType('organisation')}
                 >
                   Sign up as Organisation
@@ -228,39 +236,53 @@ function HomeSignup() {
             {signupType === 'student' && (
               <form className={styles.form} onSubmit={handleSubmit}>
                 <h2>Student Sign-up</h2>
-                <label>Name:</label>
+                <label>First Name:</label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.firstName && <div style={{ color: 'red' }}>{errors.firstName}</div>}
+                <label>Last Name:</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                /><br />{errors.lastName && <div style={{ color: 'red' }}>{errors.lastName}</div>}
                 <label>Email:</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
+                <label>Preferred Username:</label>
+                <input
+                  type="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                /><br />{errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
                 <label>Password:</label>
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
                 <label>Confirm Password:</label>
                 <input
                   type="password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>Password does not match</div>}
-                <button type="submit">Sign up</button>
+                /><br />{errors.name && <div style={{ color: 'red' }}>Password does not match</div>}
+                <button type="submit" className={styles.signup}>Sign up</button>
               </form>
             )}
             {signupType === 'organisation' && (
-              <form className={styles.form} onSubmit={handleSubmit}>
+              <form className={styles.form .orgForm} onSubmit={handleSubmit}>
                 <h2>Organisation Sign-up</h2>
                 <label>Organisation Name:</label>
                 <input className
@@ -268,119 +290,139 @@ function HomeSignup() {
                   name="orgName"
                   value={formData.orgName}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Organisation Type:</label>
                 <select
                   name="orgType"
                   value={formData.orgType}
                   onChange={handleChange}
-                >{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                >
                   <option value="">Select</option>
                   <option value="school">School</option>
                   <option value="university">University</option>
                   <option value="company">Company</option>
-                </select>
+                </select><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
 
                 <label>Organisation Description:</label>
-                <textarea
+                <input
                   name="orgDescription"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
     {/* orgAddr: '', orgHaveAnyBranches: '', orgIfAccountIsBranch: '', orgTelNo: '', orgCEO: '', orgChair: '', orgResrcPerson: '', orgYearsEst: '', orgYearsActv: '', //Biz Ideas orgFavSection: '', orgTarget: '', orgSecAudience: '', orgSector: '', orgVisStat: '', orgEmpSize: '', */}
                 <label>Address:</label>
-                <textarea
+                <input
                   name="orgAddr"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label> Have Any Branches:</label>
-                <textarea
+                <select
                   name="orgHaveAnyBranches"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+               >
+                <option>Select</option>
+                <option value={formData.orgHaveAnyBranches}>Yes</option>
+                <option value={formData.orgHaveAnyBranches}>No</option>
+                </select><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Branch Account:</label>
-                <textarea
+                <select
                   name="orgIfAccountIsBranch"
                   value={formData.orgDescription}
-                  onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                  onChange={handleChange}>
+                    <option>Select</option>
+                <option value={formData.orgIfAccountIsBranch}>Yes</option>
+                <option value={formData.orgIfAccountIsBranch}>No</option>
+                  </select>
+                <br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Contact No:</label>
                 <textarea
                   name="orgTelNo"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Company CEO:</label>
-                <textarea
+                <input
                   name="orgCEO"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Company Chairman:</label>
-                <textarea
+                <input
                   name="orgChair"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Resource Person:</label>
-                <textarea
+                <input
                   name="orgResrcPerson"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Years Established:</label>
-                <textarea
+                <input
                   name="orgYearsEst"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Years Active:</label>
-                <textarea
+                <input
                   name="orgYearsActv"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Favourite Section:</label>
-                <textarea
+                <input
                   name="orgFavSection"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Target Audience:</label>
-                <textarea
+                <input
                   name="orgTarget"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Secondary Audience:</label>
-                <textarea
+                <input
                   name="orgSecAudience"
                   value={formData.orgDescription}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
-                <label>Employee Size:</label>
-                <textarea
-                  name="orgEmpSize"
-                  value={formData.orgDescription}
-                  onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                <>
+        <label for="orgEmpSize">Employee Size:</label> <br />
+        <input type="radio" name="orgEmpSize" value={formData.orgEmpSize} onChange={handleChange}/>
+        <label for="">2-5</label>
+        <input type="radio" name="orgEmpSize" value={formData.orgEmpSize} onChange={handleChange}/>
+        <label for="">6-20</label>
+        {/* <input type="radio" name="orgEmpSize" value="21-50" value={formData.orgEmpSize}/> */}
+        <input type="radio" name="orgEmpSize" value={formData.orgEmpSize}/>
+        <label for="">21-50</label>
+        <input type="radio" name="orgEmpSize" value={formData.orgEmpSize} onChange={handleChange}/>
+        <label for="">51-100</label>
+        <input type="radio" name="orgEmpSize" value={formData.orgEmpSize} onChange={handleChange}/>
+        <label for="">101-200</label>
+        <input type="radio" name="orgEmpSize" value={formData.orgEmpSize} onChange={handleChange}/>
+        <label for="">Greater than 200</label>
+        <br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+  
+                </>
                  <label>Password:</label>
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+                /><br />{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
                 <label>Confirm Password:</label>
                 <input
                   type="password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                />{errors.name && <div style={{ color: 'red' }}>Password does not match</div>}
-                <button type="submit">Sign up</button>
+                /><br />{errors.name && <div style={{ color: 'red' }}>Password does not match</div>}
+                <button type="submit" className={styles.signup}>Sign up</button>
               </form>
             )}
           </div>
@@ -394,7 +436,7 @@ function HomeSignup() {
         {/* Right page content */}
       </div>
     </div>
-    <div className={styles.Footer}>
+    <div className={styles.footer}>
       <Footer/>
     </div>
     </>

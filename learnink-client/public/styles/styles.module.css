@@ -127,6 +127,20 @@
   background-color: rgb(255, 81, 0);
 }
 
+.signup{
+  border: 1px solid white;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: #f5f5f5;
+  background-color: lightblue;
+  margin-top: 10px;
+
+  &.signup:hover{
+    background-color: orange;
+    color: white;
+  }
+}
+
 @media (max-width: 1167px) {
   .signupButton1, .signupButton2 {
     width: 80%;
@@ -154,9 +168,19 @@
 }
 
 .orgForm{
-  background-color: darkmagenta;
+  background-color: rgb(118, 157, 159);
+  padding: 20px;
 }
 
+.orgForm input{
+  width: 80%;
+  height: relative;
+  max-height: min-content;
+}
+
+.orgForm input[type="radio"]{
+  width: 5%;
+}
 .form input, .form textarea{
   width: 80%;
 }
@@ -219,10 +243,11 @@
   @apply text-3xl font-bold;
 }
 
-.feature-title {
-  @apply text-2xl;
+.flex-fe{
+  /* @apply m-50; */
 }
-
-.feature-description {
-  @apply text-lg;
+.flexFeature{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }

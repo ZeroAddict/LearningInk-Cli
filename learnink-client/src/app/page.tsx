@@ -9,6 +9,7 @@ import stylesR from '../app/styles/rightpage/stylesR.module.css';
 import Cta from '../components/Cta';
 
 export default function Home() {
+  
   return (
      <div>
       <Header />

@@ -36,8 +36,8 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link href="/contact">
-            Contact
+          <Link href="/sections">
+            Sections
           </Link>
         </li>
       </ul>

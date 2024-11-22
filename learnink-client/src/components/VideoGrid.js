@@ -27,7 +27,7 @@ const VideoGrid = (props) => {
   const [showMenu, setShowMenu] = useState({});
   const videos = [
     {
-      title: 'Video 1',
+      title: 'Video title',
       duration: '3:45',
       creator: 'John Doe',
       section: 'Programming',
@@ -41,17 +41,17 @@ const VideoGrid = (props) => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {videos.map((video, index) => (
-        <div key={index} className="bg-gray-100 p-4 rounded">
-        <LazyLoad key={index} offset={100}>
+        <div key={index} className="bg-gray-100 p-4 rounded w-[15vw]">
+        {/* <LazyLoad key={index} offset={100}>
           <div className="bg-gray-100 p-4 rounded">
-            {/* Video content */}
+            Video content
           </div>
-        </LazyLoad>
+        </LazyLoad> */}
           <video src={video.src} className="w-full h-48" />
           <div className="mt-2">
-            <h2 className="text-lg font-bold">{video.title}</h2>
+            <h2 className="text-md font-bold">{video.title}</h2>
             <p className="text-gray-600 text-sm">
               {video.duration} • {video.creator} • {video.section}
             </p>

@@ -29,31 +29,42 @@ const LoginPage = () => {
   }
 
   return (
+    <>
     <div className={styles.log}>
       <Header />
-      <div classsName={styles.login}>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+      <div className='bg-rose-400 hover:bg-transparent w-[40vw] max-w-lg mx-auto h-[50vh] items-center mt-20 p-8 rounded-xl shadow-md' >
+      <h1 className='text-3xl font-bold items-center hover:text-black text-center text-white mx-auto mb-4'>Login Page</h1>
+      <form onSubmit={handleSubmit} className='border-2 p-5 hover:bg-gray'>
+      <label className=" block  text-gray-700 text-sm mt-5 font-bold mb-2" for="email">
+        Email:
+      </label>
+      <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-        />
+          className='mx-auto border-black w-full outline focus:outline-none focus:shadow-outline'
+          />
+      <label className=" block text-gray-700 text-sm mt-5 font-bold mb-2 w-full" for="email">
+        Password:
+      </label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-        />
+          className='w-full mx-auto mb-5 outline focus:outline-none focus:shadow-outline'
+          />
         {error && <div style={{ color: 'red' }}>{error}</div>}
-        <button className='text-blue' type="submit">Login</button>
+        <button className={styles.signup} type="submit">Login</button>
       </form>
       </div>
-      <div className={styles.footer}>
+
+    </div>
+    <div className={styles.footer}>
         <Footer />
       </div>
-    </div>
+  </>
   );
 };
 

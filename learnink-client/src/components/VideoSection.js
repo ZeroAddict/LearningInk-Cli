@@ -102,16 +102,17 @@ const videosData = [
 
 const Video = ({ title, src }) => (
   <div className="flex-1 p-4">
-    <h2 className="text-lg font-bold mb-2 hover:border-solid hover:transition-shadow">{title}</h2>
-    <video src={src} className="w-full h-48" />
+    <h2 className="text-lg     font-bold mb-2 hover:border-solid hover:transition-shadow">{title}</h2>
+    <video src={src} className="w-full h-10" />
     <VideoGrid/>
   </div>
 );
 
 const VideoSection = () => (
-  <div className="grid grid-cols-6 gap-4 justify-between">
+  <div className="grid grid-cols-6 gap-4 w-[100vw] justify-between">
     {videosData.map((video, index) => (
       <Video key={index} {...video} />
+      
     ))}
   </div>
 );

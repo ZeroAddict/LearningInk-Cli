@@ -3,9 +3,17 @@ import styles from '../../public/styles/styles.module.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import '../app/globals.css';
+import Cta from '../components/Cta';
+import RightPage from '../components/RightPage';
+import Link from "next/link";
+import sections from './sections';
+import { AuthProvider } from '../contexts/AuthContext';
+
+
 // import Head from 'next/head';
 
-function HomeSignup() {
+function HomeSignup({Component, pageProps}) {
 {/* <Head>
   <link rel="stylesheet" href="/styles/styles.css" />
 </Head> */}
@@ -22,6 +30,7 @@ function HomeSignup() {
     orgType: '',
     orgDescription: '',
     orgAddr: '',
+    orgUrl: '',
     orgHaveAnyBranches: '',
     orgIfAccountIsBranch: '',
     orgTelNo: '',
@@ -94,6 +103,11 @@ function HomeSignup() {
       required: true,
       minLength: 3,
     },
+    orgUrl: {
+      required: true,
+      minLength: 3,
+    },
+    
     orgHaveAnyBranches: {
       required: false,
       minLength: 3,
@@ -176,7 +190,7 @@ function HomeSignup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Submit form data to API or backend
-    const endpointUrl = '/organization/signup';
+    const endpointUrl = 'http://localhost:8000/organization/signUp';
     const endpointUrl2 = '/student/signup';
     axios.post(endpointUrl2, formData)
     .then((response) => console.log(response.data))
@@ -212,13 +226,72 @@ function HomeSignup() {
 
   return (
     <> <Header/>
-    <div className={styles}>
+    <Cta />
+    <div className="flex flex-col h-[400vh]">
+      <div className={styles.bgHdr}>
+
+ {/* Hero section */}
+      <div className="h-[50vh] bg-teal">
+        <h1 className="text-8xl font-bold text-white gap-2 items-center my-20 mx-5 font-weight-800">
+          Unlock<br/> your Potentials
+        </h1>
+        <h2 className='text-xl mx-5'>
+          Discover the power of LearningInk today.
+        </h2>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5" onClick={handleGetStarted}>Get Started</button>
+
+      </div>
+      {/* Heros section */}
+      <div className="h-[100vh] my-20">
+
+<h2 className='text-blue-600 text-3xl'>LearningInk <span className="section-title">hosts these features and more</span></h2> 
+      <div className="feature">
+        <div className='flex-grid grid-cols-2'>
+        <h3 className="feature-title">Excellent Learning Environment</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Tech skills</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Exam guides</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Practical skills</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Quizzes</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Flashcards</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Large Educational database</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Excellent streaming</h3>
+        <p className="feature-description">Brief description</p>
+        <h3 className="feature-title">Kiddies section</h3>
+        <p className="feature-description">Brief description</p>
+        <small>Browse through our <Link href="/sections">Sections</Link> page</small>
+
+        </div>
+      </div>
+
+      {/* Features Section */}
+      
+      </div>
+    {/*  */}
+
+      {/* Testimonial section */}
+      <div className="h-[100vh] bg-blue-400">
+
+      </div>
+
+      </div>
+     
+      <div className='flex'>
       <div className={styles.leftPage}>
         {showSignup ? (
           <div>
             {signupType === '' && (
               <>
                 {/* <h2>Sign up as:</h2> */}
+                <h2>
+                  Ready to get started?
+                </h2>
                 <button
                   className={styles.signupButton1}
                   onClick={() => handleSignupType('student')}
@@ -231,17 +304,26 @@ function HomeSignup() {
                 >
                   Sign up as Organisation
                 </button>
+
+                <h3>Join our teeming community today! Sign up now</h3>
+                <h4>
+                  Already signed up? Login in <Link href="/loginPage">here</Link>
+                </h4>
               </>
             )}
             {signupType === 'student' && (
               <form className={styles.form} onSubmit={handleSubmit}>
-                <h2>Student Sign-up</h2>
-                <label>First Name:</label>
+                <h2 className='font-bold text-3xl py-5 px-10 animation-bounce '>Student Sign-up</h2>
+                <>
+
+    
+                <label >First Name:</label>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
+                  className='focus:outline-none focus:ring focus:border-rose-300 p-2;'
                 /><br />{errors.firstName && <div style={{ color: 'red' }}>{errors.firstName}</div>}
                 <label>Last Name:</label>
                 <input
@@ -249,6 +331,7 @@ function HomeSignup() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
+                  className='focus:outline-none focus:ring focus:border-blue-300 p-2;'
                 /><br />{errors.lastName && <div style={{ color: 'red' }}>{errors.lastName}</div>}
                 <label>Email:</label>
                 <input
@@ -278,6 +361,7 @@ function HomeSignup() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 /><br />{errors.name && <div style={{ color: 'red' }}>Password does not match</div>}
+                </>
                 <button type="submit" className={styles.signup}>Sign up</button>
               </form>
             )}
@@ -427,13 +511,20 @@ function HomeSignup() {
             )}
           </div>
         ) : (
+          <>
           <button className={styles.getStartedButton} onClick={handleGetStarted}>
             Get Started
           </button>
+          <p className="text-lg">Transforming Education with unique value proposition</p>
+
+          </>
+
         )}
       </div>
       <div className={styles.rightPage}>
         {/* Right page content */}
+        <RightPage/>
+      </div>
       </div>
     </div>
     <div className={styles.footer}>

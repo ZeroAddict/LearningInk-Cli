@@ -3,6 +3,9 @@ import Footer from '../components/Footer';
 import styles from '../../public/styles/styles.module.css'; // Renamed to .module.css
 import Link from 'next/link'; // Added for routing
 import { useState } from 'react';
+import RightPage from '../components/RightPage';
+import stylesR from '../app/styles/rightpage/stylesR.module.css';
+
 
 export default function AboutPage() {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -44,41 +47,68 @@ export default function AboutPage() {
     }
   };
 
-
   return (
-    <div className={styles}> 
-    {/* styles.container flexes entire elements*/}
+    <>
+    <div className={styles.aboutpage}> 
       <Header />
-      <main className={styles}> 
+      <main className={styles.main}> 
         {/* // Added styles.main */}
-        <h1>About Us</h1>
-        <p>Learn more about our team.</p>
+       <div className=''>
+       <h1 className='text-white'>About Us</h1>
+        <p className='text-white'>Learn more about our team.</p>
+        <p className='inline-flex text-white py-10'>
+        ### Virtual Environment Setup
+
+To ensure that all dependencies are contained within the project, it's recommended to create and use a virtual environment. Here’s how to do it:
+
+#### On Windows:
+1. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   ```
+2. Activate the virtual environment:
+   ```bash
+   venv\Scripts\activate
+        </p>
         {/* Replaced button with Link */}
           {/*{handleButtonClick && ()}*/}
           <button className={styles.contactBtn} onClick={handleContactClick}>{showContactForm ? 'Say Hello 👋' : 'Contact us'}</button>
         {/* to handle reclicking contactus button */}
+       </div>
         
+        {/* <div className=''> */}
         {
           showContactForm &&  (
             <div className={styles.contactus}>
-              <h3>Contact Us </h3>
-              <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} /> <br />{errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
-                <input type="tel" placeholder="Tel No" value={phone} onChange={(e)=>setPhone(e.target.value)} />{errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}<br />
-                <input type="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />{errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+              <h3 className='py-2 text-center font-semibold'>Contact Us </h3>
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <input type="text" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} className='focus:outline-none focus:ring focus:border-blue-300 p-2;'/> <br />{errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
+                <input type="tel" placeholder="Tel No" value={phone} onChange={(e)=>setPhone(e.target.value)} className='focus:outline-none focus:ring focus:border-blue-300 p-2;'/>{errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}<br />
+                <input type="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} className='focus:outline-none focus:ring focus:border-blue-300 p-2;'/>{errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                 <br />
-                <textarea placeholder="Message" value={message} onChange={(e)=>setMessage(e.target.value)}></textarea>{errors.message && <p style={{ color: 'red' }}>{errors.message}</p>}
+                <textarea placeholder="Message" value={message} onChange={(e)=>setMessage(e.target.value)} className='focus:outline-none focus:ring p-2;'></textarea>{errors.message && <p style={{ color: 'red' }}>{errors.message}</p>}
                 <br />
-                <button>Send</button>
+                <button className='bg-black text-white py-3 px-3 rounded-lg hover:bg-[orange] hover:text-[teal] hover:ring-[green] hover:p-[10]'>Send</button>
               </form>
+              <div className={stylesR.rightAbout}>
+                <RightPage />
+              </div>
+
             </div>
           )
-        }
+        }          
+        {/* </div> */}
+
+        {/* <div className={stylesR.rightAbout}>
+          <RightPage />
+        </div> */}
       </main>
       
-      <div className={styles.footer}>
+
+    </div>      
+    <div className={styles.footer}>
         <Footer />
-      </div>
     </div>
+  </>
   );
 }
